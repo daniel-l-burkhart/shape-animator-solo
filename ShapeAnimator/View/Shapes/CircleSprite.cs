@@ -9,9 +9,6 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public class CircleSprite : ShapeSprite
     {
-        #region Instance variables
-
-        #endregion
 
         #region Properties
 
@@ -85,7 +82,6 @@ namespace ShapeAnimator.View.Shapes
             {
                 return;
             }
-
             var redBrush = new SolidBrush(Color.Red);
             g.FillEllipse(redBrush, this.AShape.X, this.AShape.Y, 100, 100);
         }

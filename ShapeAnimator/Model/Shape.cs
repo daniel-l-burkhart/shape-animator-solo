@@ -80,8 +80,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Shape()
         {
-            var randomShapeInstance = new RandomShape();
-            this.ShapeSpriteInstance = randomShapeInstance.GetRandomShapeSprite(this);
+
         }
 
         /// <summary>
@@ -124,6 +123,7 @@ namespace ShapeAnimator.Model
         public void Move()
         {
             this.X += RandomizerFactory.MakeRandomizer().Next(-5, 6);
+
             this.Y += RandomizerFactory.MakeRandomizer().Next(-5, 6);
         }
 

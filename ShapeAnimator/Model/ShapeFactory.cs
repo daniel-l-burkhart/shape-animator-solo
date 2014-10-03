@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace ShapeAnimator.Model
 {
@@ -34,12 +36,12 @@ namespace ShapeAnimator.Model
         ///     Creates a random shape and is the purpose of the ShapeFactory.
         /// </summary>
         /// <returns></returns>
-        public static Shape CreateAShape()
+        public static Shape CreateAShape(int x, int y)
         {
-            return determineRandomShape();
+            return determineRandomShape(x, y);
         }
 
-        private static Shape determineRandomShape()
+        private static Shape determineRandomShape(int x, int y)
         {
             Shape randomShape = null;
             Array values = Enum.GetValues(typeof (MyShapes));
@@ -48,13 +50,13 @@ namespace ShapeAnimator.Model
             switch (theShape)
             {
                 case MyShapes.Circle:
-                    randomShape = new Circle(0, 0);
+                    randomShape = new Circle(x, y);
                     break;
                 case MyShapes.Square:
-                    randomShape = new Square(0, 0);
+                    randomShape = new Square(x, y);
                     break;
                 case MyShapes.SpottedCircle:
-                    randomShape = new SpottedCircle(0, 0);
+                    randomShape = new SpottedCircle(x, y);
                     break;
             }
             return randomShape;

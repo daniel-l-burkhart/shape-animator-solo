@@ -15,6 +15,7 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         public Circle(int x, int y) : base(x, y)
         {
+
             this.ShapeSpriteInstance = new CircleSprite(this);
         }
 

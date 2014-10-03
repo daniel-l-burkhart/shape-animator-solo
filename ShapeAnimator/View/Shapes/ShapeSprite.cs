@@ -9,6 +9,8 @@ namespace ShapeAnimator.View.Shapes
     public abstract class ShapeSprite
     {
         protected Shape AShape;
+    
+        
         protected int ShapeHeight;
         protected int ShapeWidth;
 

@@ -17,6 +17,8 @@ namespace ShapeAnimator.Model
 
         private readonly List<Shape> shapes;
 
+        private Shape newShape;
+
         #endregion
 
         #region Constructors
@@ -60,19 +62,20 @@ namespace ShapeAnimator.Model
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                Shape newShape = ShapeFactory.CreateAShape();
-                this.shapes.Add(newShape);
+                int initialX = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Width);
+                int initialY = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Height);
+                this.newShape = ShapeFactory.CreateAShape(initialX, initialY);
                 this.placeShapesWithinBounds();
+                
+           
+                this.shapes.Add(this.newShape);
             }
         }
 
         private void placeShapesWithinBounds()
         {
-            foreach (Shape currentShape in this.shapes)
-            {
-                currentShape.X = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Width - currentShape.Width);
-                currentShape.Y = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Height - currentShape.Height);
-            }
+            this.newShape.X -= this.newShape.Width;
+            this.newShape.Y -= this.newShape.Height;
         }
 
         /// <summary>
