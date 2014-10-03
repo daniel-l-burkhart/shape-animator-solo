@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\RandomizerFactory.cs" />
     <Compile Include="Model\ShapeManager.cs" />
     <Compile Include="Model\Circle.cs" />
     <Compile Include="Model\RandomShape.cs" />

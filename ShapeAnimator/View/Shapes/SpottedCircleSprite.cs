@@ -16,11 +16,6 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         public const int ChangeFactor = 20;
 
-        /// <summary>
-        /// The spotted circle
-        /// </summary>
-        private readonly Shape spottedCircle;
-
         #endregion
 
         #region Constructor
@@ -37,7 +32,7 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("newSpottedCircle");
             }
 
-            this.spottedCircle = newSpottedCircle;
+            AShape = newSpottedCircle;
         }
 
         #endregion
@@ -62,8 +57,8 @@ namespace ShapeAnimator.View.Shapes
         {
             var dotBrush = new SolidBrush(Color.White);
 
-            var dotX = (this.spottedCircle.X + ChangeFactor);
-            var dotY = (this.spottedCircle.Y + ChangeFactor);
+            var dotX = (AShape.X + ChangeFactor);
+            var dotY = (AShape.Y + ChangeFactor);
 
             g.FillEllipse(dotBrush, dotX, dotY, 20, 20);
 

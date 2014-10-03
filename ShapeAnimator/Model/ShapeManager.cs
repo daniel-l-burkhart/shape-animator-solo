@@ -13,15 +13,11 @@ namespace ShapeAnimator.Model
     {
         #region Instance variables
 
-        public const int SizeOfLargestShape = 100;
-
         private readonly PictureBox canvas;
 
-        private readonly List<Shape> listOfShapes;
+        private readonly List<Shape> shapes;
 
         private Shape newShape;
-
-        private Random randomizer;
 
         #endregion
 
@@ -29,7 +25,7 @@ namespace ShapeAnimator.Model
 
         private ShapeManager()
         {
-            this.listOfShapes = new List<Shape>();
+            this.shapes = new List<Shape>();
             this.newShape = null;
         }
 
@@ -59,12 +55,7 @@ namespace ShapeAnimator.Model
         /// <exception cref="System.ArgumentNullException">number of shapes cannot be null.</exception>
         public void PlaceShapesOnCanvas(int numberOfShapes)
         {
-            if (numberOfShapes < 0)
-            {
-                throw new ArgumentOutOfRangeException("numberOfShapes");
-            }
-            this.listOfShapes.Clear();
-            this.randomizer = new Random();
+            this.shapes.Clear();
             this.makeShapes(numberOfShapes);
         }
 
@@ -72,10 +63,18 @@ namespace ShapeAnimator.Model
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                int x = this.randomizer.Next(0, this.canvas.Width - SizeOfLargestShape);
-                int y = this.randomizer.Next(0, this.canvas.Height - SizeOfLargestShape);
-                this.newShape = new Shape(x, y);
-                this.listOfShapes.Add(this.newShape);
+                Shape newShape = ShapeFactory.CreateAShape();  
+                this.shapes.Add(newShape);
+                this.placeShapesWithinBounds();
+            }
+        }
+
+        private void placeShapesWithinBounds()
+        {
+            foreach (Shape currentShape in this.shapes)
+            {
+                currentShape.X = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Width - currentShape.Width);
+                currentShape.Y = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Height - currentShape.Height);
             }
         }
 
@@ -92,7 +91,7 @@ namespace ShapeAnimator.Model
                 throw new ArgumentNullException("g");
             }
 
-            foreach (Shape currentShape in this.listOfShapes)
+            foreach (Shape currentShape in this.shapes)
             {
                 if (currentShape == null)
                 {

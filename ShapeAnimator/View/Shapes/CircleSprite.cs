@@ -11,35 +11,61 @@ namespace ShapeAnimator.View.Shapes
     {
         #region Instance variables
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
-        ///     The circle shape
+        ///     The circle height
         /// </summary>
-        private readonly Shape circleShape;
+        public const int CircleCircleHeightProperty = 100;
+
+        /// <summary>
+        ///     The circle width
+        /// </summary>
+        public const int CircleCircleWidthProperty = 100;
+
+        /// <summary>
+        ///     Gets the CircleCircleWidthProperty.
+        /// </summary>
+        /// <value>
+        ///     The CircleCircleWidthProperty.
+        /// </value>
+        public int CircleWidthProperty
+        {
+            get { return CircleCircleWidthProperty; }
+        }
+
+        /// <summary>
+        ///     Gets the CircleHeightProperty.
+        /// </summary>
+        /// <value>
+        ///     The CircleHeightProperty.
+        /// </value>
+        public int CircleHeightProperty
+        {
+            get { return CircleCircleHeightProperty; }
+        }
 
         #endregion
 
         /// <summary>
         ///     Prevents a default instance of the <see cref="CircleSprite" /> class from being created.
         /// </summary>
-        private CircleSprite()
-        {
-            this.circleShape = null;
-        }
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CircleSprite" /> class.
         ///     Precondition: shape != null
         /// </summary>
         /// <param name="newCircle">The new circle.</param>
         /// <exception cref="System.ArgumentNullException">shape</exception>
-        public CircleSprite(Shape newCircle) : this()
+        public CircleSprite(Shape newCircle) : base(newCircle, CircleCircleWidthProperty, CircleCircleHeightProperty)
         {
             if (newCircle == null)
             {
                 throw new ArgumentNullException("newCircle");
             }
 
-            this.circleShape = newCircle;
+            this.AShape = newCircle;
         }
 
         /// <summary>
@@ -55,13 +81,13 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("g");
             }
 
-            if (this.circleShape == null)
+            if (this.AShape == null)
             {
                 return;
             }
 
             var redBrush = new SolidBrush(Color.Red);
-            g.FillEllipse(redBrush, this.circleShape.X, this.circleShape.Y, 100, 100);
+            g.FillEllipse(redBrush, this.AShape.X, this.AShape.Y, 100, 100);
         }
     }
 }

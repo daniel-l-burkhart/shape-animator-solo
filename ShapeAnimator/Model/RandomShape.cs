@@ -9,12 +9,7 @@ namespace ShapeAnimator.Model
     /// </summary>
     public class RandomShape
     {
-        #region Instance Varialbes
-
-        /// <summary>
-        ///     The random variable used to create random shapes.
-        /// </summary>
-        private static readonly Random RandomVariable = new Random();
+        #region Instance Variables
 
         /// <summary>
         ///     The list of shape sprites
@@ -61,7 +56,7 @@ namespace ShapeAnimator.Model
                 new SpottedCircleSprite(newShape)
             };
 
-            this.randomInt = RandomVariable.Next(0, 3);
+            this.randomInt = RandomizerFactory.MakeRandomizer().Next(0, 3);
 
             this.randomShapeSpriteInstance = this.listOfShapeSprites[this.randomInt];
             return this.randomShapeSpriteInstance;

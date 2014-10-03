@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ShapeAnimator.View.Shapes;
@@ -9,38 +10,62 @@ using ShapeAnimator.View.Shapes;
 namespace ShapeAnimator.Model
 {
 
+    /// <summary>
+    /// Creates a returns a Shape
+    /// </summary>
     public static class ShapeFactory
     {
-        public enum myShapes
+        /// <summary>
+        /// the shape enumeration.
+        /// </summary>
+        public enum MyShapes
         {
-            circle,
-            square,
-            spottedCircle
+            /// <summary>
+            /// The circle
+            /// </summary>
+            Circle,
+            /// <summary>
+            /// The square
+            /// </summary>
+            Square,
+            /// <summary>
+            /// The spotted circle
+            /// </summary>
+            SpottedCircle
         };
 
-        private static readonly Random randomizer = new Random();
+        private static MyShapes theShape;
 
-        private static Array values = Enum.GetValues(typeof (myShapes));
-        private static myShapes shape;
 
-        public static Shape determineRandomShape()
+        /// <summary>
+        /// Creates a random shape and is the purpose of the ShapeFactory.
+        /// </summary>
+        /// <returns></returns>
+        public static Shape CreateAShape()
         {
-            
-            Shape theShape = null;
-            switch (shape)
+            return determineRandomShape();
+        }
+
+        private static Shape determineRandomShape()
+        {
+            Shape randomShape = null;
+            Array values = Enum.GetValues(typeof (MyShapes));
+            theShape = (MyShapes) values.GetValue(RandomizerFactory.MakeRandomizer().Next(values.Length));
+                 
+            switch (theShape)
             {
-                case myShapes.circle:
-                    theShape = new Circle();
+                case MyShapes.Circle:
+                    randomShape = new Circle();
                     break;
-                case myShapes.square:
-                    theShape = new Square();
+                case MyShapes.Square:
+                    randomShape = new Square();
                     break;
-                case myShapes.spottedCircle:
-                    theShape = new SpottedCircle();
+                case MyShapes.SpottedCircle:
+                    randomShape = new SpottedCircle();
                     break;
 
             }
-            return theShape;
+            return randomShape;
         }
     }
 }

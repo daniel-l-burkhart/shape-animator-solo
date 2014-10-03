@@ -11,20 +11,44 @@ namespace ShapeAnimator.View.Shapes
     {
         #region Instance variables
 
-        /// <summary>
-        /// The square shape
-        /// </summary>
-        private readonly Shape squareShape;
-
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// The square height
+        /// </summary>
+        public const int SquareHeightConst = 100;
+        /// <summary>
+        /// The square width
+        /// </summary>
+        public const int SquareWidthConst = 100;
+
+        /// <summary>
+        ///     Gets the CircleCircleWidthProperty.
+        /// </summary>
+        /// <value>
+        ///     The CircleCircleWidthProperty.
+        /// </value>
+        public int SquareWidth
+        {
+            get { return SquareWidthConst; }
+        }
+
+        /// <summary>
+        ///     Gets the CircleHeightProperty.
+        /// </summary>
+        /// <value>
+        ///     The CircleHeightProperty.
+        /// </value>
+        public int SquareHeight
+        {
+            get { return SquareHeightConst; }
+        }
+        #endregion
         /// <summary>
         /// Prevents a default instance of the <see cref="SquareSprite" /> class from being created.
         /// </summary>
-        private SquareSprite()
-        {
-            this.squareShape = null;
-        }
+       
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SquareSprite" /> class.
@@ -32,14 +56,14 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         /// <param name="newSquare">The new square.</param>
         /// <exception cref="System.ArgumentNullException">shape</exception>
-        public SquareSprite(Shape newSquare) : this()
+        public SquareSprite(Shape newSquare) : base(newSquare, SquareWidthConst, SquareHeightConst)
         {
             if (newSquare == null)
             {
                 throw new ArgumentNullException("newSquare");
             }
 
-            this.squareShape = newSquare;
+            AShape = newSquare;
         }
 
         /// <summary>
@@ -55,13 +79,13 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("g");
             }
 
-            if (this.squareShape == null)
+            if (AShape == null)
             {
                 return;
             }
 
             var aquamarineBrush = new SolidBrush(Color.Aquamarine);
-            g.FillRectangle(aquamarineBrush, this.squareShape.X, this.squareShape.Y, 50, 50);
+            g.FillRectangle(aquamarineBrush, AShape.X, AShape.Y, 50, 50);
         }
     }
 }

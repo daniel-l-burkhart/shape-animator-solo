@@ -32,14 +32,20 @@ namespace ShapeAnimator.View.Forms
         {
             get
             {
+                int number = 0;
                 try
                 {
-                    return Convert.ToInt32(this.numberShapesTextBox.Text);
+                    number = Convert.ToInt32(this.numberShapesTextBox.Text);
+                    if (number < 0)
+                    {
+                        MessageBox.Show("Number of Shapes cannot be negative");                      
+                    }
                 }
                 catch (Exception)
                 {
-                    return 0;
+                    MessageBox.Show("Type must be of integer form");
                 }
+                return number;
             }
         }
 

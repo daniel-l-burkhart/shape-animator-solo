@@ -7,19 +7,14 @@ namespace ShapeAnimator.Model
     /// <summary>
     ///     Holds information about a shape
     /// </summary>
-    public class Shape
+    public abstract class Shape
     {
         #region Instance variables
 
         /// <summary>
         ///     The new shape sprite
         /// </summary>
-        protected ShapeSprite newShapeSprite;
-
-        /// <summary>
-        ///     The randomizer
-        /// </summary>
-        private readonly Random randomizer;
+        protected ShapeSprite ShapeSpriteInstance;
 
         /// <summary>
         ///     The location
@@ -54,6 +49,28 @@ namespace ShapeAnimator.Model
             set { this.location.Y = value; }
         }
 
+        /// <summary>
+        /// Gets the CircleWidthProperty.
+        /// </summary>
+        /// <value>
+        /// The CircleWidthProperty.
+        /// </value>
+        public int Width
+        {
+            get { return this.ShapeSpriteInstance.Width; }
+        }
+
+        /// <summary>
+        /// Gets the CircleHeightProperty.
+        /// </summary>
+        /// <value>
+        /// The CircleHeightProperty.
+        /// </value>
+        public int Height
+        {
+            get { return this.ShapeSpriteInstance.Height; }
+        }
+
         #endregion
 
         #region Constructors
@@ -63,9 +80,8 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Shape()
         {
-            this.randomizer = new Random();
             var randomShapeInstance = new RandomShape();
-            this.newShapeSprite = randomShapeInstance.GetRandomShapeSprite(this);
+            this.ShapeSpriteInstance = randomShapeInstance.GetRandomShapeSprite(this);
         }
 
         /// <summary>
@@ -75,7 +91,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         /// <param name="location">Location to create shape</param>
         /// <exception cref="System.ArgumentNullException">location</exception>
-        public Shape(Point location) : this()
+        protected Shape(Point location) : this()
         {
             if (location == null)
             {
@@ -91,10 +107,11 @@ namespace ShapeAnimator.Model
         /// </summary>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
-        public Shape(int x, int y) : this()
+        protected Shape(int x, int y) : this()
         {
             this.location = new Point(x, y);
         }
+
 
         #endregion
 
@@ -107,8 +124,8 @@ namespace ShapeAnimator.Model
         /// </summary>
         public void Move()
         {
-            this.X += this.randomizer.Next(-5, 6);
-            this.Y += this.randomizer.Next(-5, 6);
+            this.X += RandomizerFactory.MakeRandomizer().Next(-5, 6);
+            this.Y += RandomizerFactory.MakeRandomizer().Next(-5, 6);
         }
 
         /// <summary>
@@ -123,9 +140,10 @@ namespace ShapeAnimator.Model
             {
                 throw new ArgumentNullException("g");
             }
-            this.newShapeSprite.Paint(g);
+            this.ShapeSpriteInstance.Paint(g);
         }
 
         #endregion
     }
+
 }
