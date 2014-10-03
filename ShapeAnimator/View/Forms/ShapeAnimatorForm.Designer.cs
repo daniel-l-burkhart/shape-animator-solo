@@ -46,7 +46,7 @@ namespace ShapeAnimator.View.Forms
             this.canvasPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.canvasPictureBox.Location = new System.Drawing.Point(12, 58);
             this.canvasPictureBox.Name = "canvasPictureBox";
-            this.canvasPictureBox.Size = new System.Drawing.Size(580, 340);
+            this.canvasPictureBox.Size = new System.Drawing.Size(720, 480);
             this.canvasPictureBox.TabIndex = 0;
             this.canvasPictureBox.TabStop = false;
             this.canvasPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.shapeCanvasPictureBox_Paint);
@@ -86,14 +86,14 @@ namespace ShapeAnimator.View.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 415);
+            this.ClientSize = new System.Drawing.Size(744, 552);
             this.Controls.Add(this.animateButton);
             this.Controls.Add(this.numberShapesTextBox);
             this.Controls.Add(this.numberOfShapesLabel);
             this.Controls.Add(this.canvasPictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ShapeAnimatorForm";
-            this.Text = "Shape Animator A2 by Daniel Burkhart";
+            this.Text = "Shape Animator A3 by Daniel Burkhart";
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

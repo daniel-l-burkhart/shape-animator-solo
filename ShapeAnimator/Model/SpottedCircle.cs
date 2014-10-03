@@ -7,7 +7,6 @@ namespace ShapeAnimator.Model
     /// </summary>
     public class SpottedCircle : Shape
     {
-        private ShapeSprite theSprite;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpottedCircle"/> class.
@@ -16,7 +15,7 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         public SpottedCircle(int x, int y) : base(x, y)
         {
-            this.theSprite = new SpottedCircleSprite(this);
+            this.newShapeSprite = new SpottedCircleSprite(this);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ShapeAnimator.Model
         /// <summary>
         ///     The new shape sprite
         /// </summary>
-        private readonly ShapeSprite newShapeSprite;
+        protected ShapeSprite newShapeSprite;
 
         /// <summary>
         ///     The randomizer

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,10 @@ namespace ShapeAnimator.Model
 {
    public class Square : Shape
    {
-       private ShapeSprite theSprite;
        public Square(int x, int y) : base(x, y)
        {
-           theSprite = new SquareSprite(this);
+           this.newShapeSprite = new SquareSprite(this);
        }
+
     }
 }

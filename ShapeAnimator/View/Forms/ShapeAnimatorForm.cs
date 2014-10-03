@@ -15,7 +15,7 @@ namespace ShapeAnimator.View.Forms
         /// <summary>
         ///     The canvas manager
         /// </summary>
-        private readonly CanvasManager canvasManager;
+        private readonly ShapeManager shapeManager;
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace ShapeAnimator.View.Forms
         {
             this.InitializeComponent();
 
-            this.canvasManager = new CanvasManager(this.canvasPictureBox);
+            this.shapeManager = new ShapeManager(this.canvasPictureBox);
         }
 
         #endregion
@@ -80,7 +80,7 @@ namespace ShapeAnimator.View.Forms
         private void shapeCanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            this.canvasManager.Update(g);
+            this.shapeManager.Update(g);
         }
 
         /// <summary>
@@ -92,11 +92,13 @@ namespace ShapeAnimator.View.Forms
         {
             this.animationTimer.Stop();
 
-            this.canvasManager.PlaceShapesOnCanvas(this.NumberShapes);
+            this.shapeManager.PlaceShapesOnCanvas(this.NumberShapes);
 
             this.animationTimer.Start();
         }
 
         #endregion
+
+       
     }
 }

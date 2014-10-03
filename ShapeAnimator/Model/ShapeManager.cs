@@ -9,55 +9,37 @@ namespace ShapeAnimator.Model
     /// <summary>
     /// Manages the collection of shapes on the canvas.
     /// </summary>
-    public class CanvasManager
+    public class ShapeManager
     {
         #region Instance variables
 
-        /// <summary>
-        /// The size of largest shape
-        /// </summary>
         public const int SizeOfLargestShape = 100;
 
-        /// <summary>
-        /// The canvas
-        /// </summary>
         private readonly PictureBox canvas;
 
-        /// <summary>
-        /// The list of shapes
-        /// </summary>
         private readonly List<Shape> listOfShapes;
 
-        /// <summary>
-        /// The new shape
-        /// </summary>
         private Shape newShape;
 
-        /// <summary>
-        /// The randomizer
-        /// </summary>
         private Random randomizer;
 
         #endregion
 
         #region Constructors
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="CanvasManager" /> class from being created.
-        /// </summary>
-        private CanvasManager()
+        private ShapeManager()
         {
             this.listOfShapes = new List<Shape>();
             this.newShape = null;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CanvasManager" /> class.
+        /// Initializes a new instance of the <see cref="ShapeManager" /> class.
         /// Precondition: pictureBox != null
         /// </summary>
         /// <param name="pictureBox">The picture box that the program will be drawing on</param>
         /// <exception cref="System.ArgumentNullException">pictureBox</exception>
-        public CanvasManager(PictureBox pictureBox) : this()
+        public ShapeManager(PictureBox pictureBox) : this()
         {
             if (pictureBox == null)
             {
@@ -81,14 +63,11 @@ namespace ShapeAnimator.Model
             {
                 throw new ArgumentOutOfRangeException("numberOfShapes");
             }
+            this.listOfShapes.Clear();
             this.randomizer = new Random();
             this.makeShapes(numberOfShapes);
         }
 
-        /// <summary>
-        /// Makes the shapes.
-        /// </summary>
-        /// <param name="numberOfShapes">The number of shapes.</param>
         private void makeShapes(int numberOfShapes)
         {
             for (int i = 0; i < numberOfShapes; i++)

@@ -9,10 +9,10 @@ namespace ShapeAnimator.Model
 {
     public class Circle : Shape
     {
-        private ShapeSprite theSprite;
+
         public Circle(int x, int y) : base(x, y)
         {
-            theSprite = new CircleSprite(this);
+            this.newShapeSprite = new CircleSprite(this);
         }
     }
 }
