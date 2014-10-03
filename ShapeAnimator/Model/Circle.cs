@@ -26,6 +26,5 @@ namespace ShapeAnimator.Model
         {
             this.ShapeSpriteInstance = new CircleSprite(this);
         }
-        
     }
 }

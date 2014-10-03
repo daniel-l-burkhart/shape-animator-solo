@@ -7,7 +7,7 @@ using ShapeAnimator.Properties;
 namespace ShapeAnimator.Model
 {
     /// <summary>
-    /// Manages the collection of shapes on the canvas.
+    ///     Manages the collection of shapes on the canvas.
     /// </summary>
     public class ShapeManager
     {
@@ -17,8 +17,6 @@ namespace ShapeAnimator.Model
 
         private readonly List<Shape> shapes;
 
-        private Shape newShape;
-
         #endregion
 
         #region Constructors
@@ -26,12 +24,11 @@ namespace ShapeAnimator.Model
         private ShapeManager()
         {
             this.shapes = new List<Shape>();
-            this.newShape = null;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShapeManager" /> class.
-        /// Precondition: pictureBox != null
+        ///     Initializes a new instance of the <see cref="ShapeManager" /> class.
+        ///     Precondition: pictureBox != null
         /// </summary>
         /// <param name="pictureBox">The picture box that the program will be drawing on</param>
         /// <exception cref="System.ArgumentNullException">pictureBox</exception>
@@ -47,8 +44,8 @@ namespace ShapeAnimator.Model
         #endregion
 
         /// <summary>
-        /// Places the shape on the canvas.
-        /// Precondition: numberOfShapes != less than 0
+        ///     Places the shape on the canvas.
+        ///     Precondition: numberOfShapes != less than 0
         /// </summary>
         /// <param name="numberOfShapes">The number of shapes.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">Number of shapes cannot be negative.</exception>
@@ -63,7 +60,7 @@ namespace ShapeAnimator.Model
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                Shape newShape = ShapeFactory.CreateAShape();  
+                Shape newShape = ShapeFactory.CreateAShape();
                 this.shapes.Add(newShape);
                 this.placeShapesWithinBounds();
             }
@@ -79,8 +76,8 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Moves the shape around and the calls the Shape::Paint method to draw the shape.
-        /// Precondition: g != null
+        ///     Moves the shape around and the calls the Shape::Paint method to draw the shape.
+        ///     Precondition: g != null
         /// </summary>
         /// <param name="g">The graphics object to draw on</param>
         /// <exception cref="System.ArgumentNullException">g</exception>

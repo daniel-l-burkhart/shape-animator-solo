@@ -5,7 +5,6 @@ using ShapeAnimator.Model;
 namespace ShapeAnimator.View.Shapes
 {
     /// <summary>
-    /// 
     /// </summary>
     public class SquareSprite : ShapeSprite
     {
@@ -14,12 +13,14 @@ namespace ShapeAnimator.View.Shapes
         #endregion
 
         #region Properties
+
         /// <summary>
-        /// The square height
+        ///     The square height
         /// </summary>
         public const int SquareHeightConst = 100;
+
         /// <summary>
-        /// The square width
+        ///     The square width
         /// </summary>
         public const int SquareWidthConst = 100;
 
@@ -44,15 +45,15 @@ namespace ShapeAnimator.View.Shapes
         {
             get { return SquareHeightConst; }
         }
+
         #endregion
-        /// <summary>
-        /// Prevents a default instance of the <see cref="SquareSprite" /> class from being created.
-        /// </summary>
-       
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SquareSprite" /> class.
-        /// Precondition: newSquare != null
+        ///     Prevents a default instance of the <see cref="SquareSprite" /> class from being created.
+        /// </summary>
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="SquareSprite" /> class.
+        ///     Precondition: newSquare != null
         /// </summary>
         /// <param name="newSquare">The new square.</param>
         /// <exception cref="System.ArgumentNullException">shape</exception>
@@ -63,12 +64,12 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("newSquare");
             }
 
-            AShape = newSquare;
+            this.AShape = newSquare;
         }
 
         /// <summary>
-        /// Draws a shape
-        /// Preconditon: g != null squareShape != null
+        ///     Draws a shape
+        ///     Preconditon: g != null squareShape != null
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
         /// <exception cref="System.ArgumentNullException">g</exception>
@@ -79,13 +80,13 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("g");
             }
 
-            if (AShape == null)
+            if (this.AShape == null)
             {
                 return;
             }
 
             var aquamarineBrush = new SolidBrush(Color.Aquamarine);
-            g.FillRectangle(aquamarineBrush, AShape.X, AShape.Y, 50, 50);
+            g.FillRectangle(aquamarineBrush, this.AShape.X, this.AShape.Y, 50, 50);
         }
     }
 }

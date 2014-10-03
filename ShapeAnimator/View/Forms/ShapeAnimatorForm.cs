@@ -38,7 +38,7 @@ namespace ShapeAnimator.View.Forms
                     number = Convert.ToInt32(this.numberShapesTextBox.Text);
                     if (number < 0)
                     {
-                        MessageBox.Show("Number of Shapes cannot be negative");                      
+                        MessageBox.Show("Number of Shapes cannot be negative");
                     }
                 }
                 catch (Exception)
@@ -104,7 +104,5 @@ namespace ShapeAnimator.View.Forms
         }
 
         #endregion
-
-       
     }
 }

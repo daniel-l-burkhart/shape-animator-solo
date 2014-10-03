@@ -50,10 +50,10 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets the CircleWidthProperty.
+        ///     Gets the CircleWidthProperty.
         /// </summary>
         /// <value>
-        /// The CircleWidthProperty.
+        ///     The CircleWidthProperty.
         /// </value>
         public int Width
         {
@@ -61,10 +61,10 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets the CircleHeightProperty.
+        ///     Gets the CircleHeightProperty.
         /// </summary>
         /// <value>
-        /// The CircleHeightProperty.
+        ///     The CircleHeightProperty.
         /// </value>
         public int Height
         {
@@ -112,7 +112,6 @@ namespace ShapeAnimator.Model
             this.location = new Point(x, y);
         }
 
-
         #endregion
 
         #region Methods
@@ -145,5 +144,4 @@ namespace ShapeAnimator.Model
 
         #endregion
     }
-
 }
