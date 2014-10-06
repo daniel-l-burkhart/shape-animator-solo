@@ -44,7 +44,7 @@ namespace ShapeAnimator.View.Shapes
         ///     Preconditon: g != null
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
-        public override void Paint(Graphics g)
+        public new void Paint(Graphics g)
         {
             base.Paint(g);
             this.fillWithDots(g);

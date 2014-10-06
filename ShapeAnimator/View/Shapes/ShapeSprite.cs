@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -9,8 +10,6 @@ namespace ShapeAnimator.View.Shapes
     public abstract class ShapeSprite
     {
         protected Shape AShape;
-    
-        
         protected int ShapeHeight;
         protected int ShapeWidth;
 
@@ -47,9 +46,36 @@ namespace ShapeAnimator.View.Shapes
         }
 
         /// <summary>
+        ///     Gets the speed of the Sprite.
+        /// </summary>
+        /// <value>
+        ///     The speed.
+        /// </value>
+        public int Speed
+        {
+            get { return RandomizerFactory.MakeRandomizer().Next(1, 6); }
+        }
+
+        /// <summary>
         ///     Paints the specified g.
         /// </summary>
         /// <param name="g">The g.</param>
-        public abstract void Paint(Graphics g);
+        public void Paint(Graphics g)
+        {
+            if (g == null)
+            {
+                throw new ArgumentNullException("g");
+            }
+
+            if (this.AShape == null)
+            {
+                return;
+            }
+
+            Array values = Enum.GetValues(typeof (KnownColor));
+            var randomColor = (KnownColor) values.GetValue(RandomizerFactory.MakeRandomizer().Next(values.Length));
+            var brush = new SolidBrush(Color.FromKnownColor(randomColor));
+            g.FillEllipse(brush, this.AShape.X, this.AShape.Y, this.AShape.Width, this.AShape.Height);
+        }
     }
 }

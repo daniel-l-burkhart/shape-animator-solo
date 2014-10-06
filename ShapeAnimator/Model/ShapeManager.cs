@@ -62,20 +62,17 @@ namespace ShapeAnimator.Model
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                int initialX = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Width);
-                int initialY = RandomizerFactory.MakeRandomizer().Next(0, this.canvas.Height);
-                this.newShape = ShapeFactory.CreateAShape(initialX, initialY);
+                this.newShape = ShapeFactory.CreateAShape();
                 this.placeShapesWithinBounds();
-                
-           
+
                 this.shapes.Add(this.newShape);
             }
         }
 
         private void placeShapesWithinBounds()
         {
-            this.newShape.X -= this.newShape.Width;
-            this.newShape.Y -= this.newShape.Height;
+            this.newShape.X = - this.newShape.Width;
+            this.newShape.Y = - this.newShape.Height;
         }
 
         /// <summary>

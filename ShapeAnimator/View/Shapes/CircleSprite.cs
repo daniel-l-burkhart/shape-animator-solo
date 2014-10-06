@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -9,7 +8,6 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public class CircleSprite : ShapeSprite
     {
-
         #region Properties
 
         /// <summary>
@@ -63,27 +61,6 @@ namespace ShapeAnimator.View.Shapes
             }
 
             this.AShape = newCircle;
-        }
-
-        /// <summary>
-        ///     Draws a shape
-        ///     Preconditon: g != null
-        /// </summary>
-        /// <param name="g">The graphics object to draw the shape one</param>
-        /// <exception cref="System.ArgumentNullException">g</exception>
-        public override void Paint(Graphics g)
-        {
-            if (g == null)
-            {
-                throw new ArgumentNullException("g");
-            }
-
-            if (this.AShape == null)
-            {
-                return;
-            }
-            var redBrush = new SolidBrush(Color.Red);
-            g.FillEllipse(redBrush, this.AShape.X, this.AShape.Y, 100, 100);
         }
     }
 }

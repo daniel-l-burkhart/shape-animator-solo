@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -65,28 +64,6 @@ namespace ShapeAnimator.View.Shapes
             }
 
             this.AShape = newSquare;
-        }
-
-        /// <summary>
-        ///     Draws a shape
-        ///     Preconditon: g != null squareShape != null
-        /// </summary>
-        /// <param name="g">The graphics object to draw the shape one</param>
-        /// <exception cref="System.ArgumentNullException">g</exception>
-        public override void Paint(Graphics g)
-        {
-            if (g == null)
-            {
-                throw new ArgumentNullException("g");
-            }
-
-            if (this.AShape == null)
-            {
-                return;
-            }
-
-            var aquamarineBrush = new SolidBrush(Color.Aquamarine);
-            g.FillRectangle(aquamarineBrush, this.AShape.X, this.AShape.Y, 50, 50);
         }
     }
 }

@@ -12,6 +12,24 @@ namespace ShapeAnimator.Model
         #region Instance variables
 
         /// <summary>
+        ///     Enumeration between horizontal and vertical movement
+        /// </summary>
+        public enum TheDirections
+        {
+            /// <summary>
+            ///     The horizontal direction
+            /// </summary>
+            Horizontal,
+
+            /// <summary>
+            ///     The vertical direction
+            /// </summary>
+            Vertical
+        }
+
+        protected TheDirections CurrentDirection;
+
+        /// <summary>
         ///     The new shape sprite
         /// </summary>
         protected ShapeSprite ShapeSpriteInstance;
@@ -71,6 +89,17 @@ namespace ShapeAnimator.Model
             get { return this.ShapeSpriteInstance.Height; }
         }
 
+        /// <summary>
+        ///     Gets the speed.
+        /// </summary>
+        /// <value>
+        ///     The speed.
+        /// </value>
+        public int Speed
+        {
+            get { return this.ShapeSpriteInstance.Speed; }
+        }
+
         #endregion
 
         #region Constructors
@@ -80,7 +109,6 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Shape()
         {
-
         }
 
         /// <summary>
@@ -122,9 +150,15 @@ namespace ShapeAnimator.Model
         /// </summary>
         public void Move()
         {
-            this.X += RandomizerFactory.MakeRandomizer().Next(-5, 6);
-
-            this.Y += RandomizerFactory.MakeRandomizer().Next(-5, 6);
+            switch (this.CurrentDirection)
+            {
+                case TheDirections.Horizontal:
+                    this.X += this.Speed;
+                    break;
+                case TheDirections.Vertical:
+                    this.Y += this.Speed;
+                    break;
+            }
         }
 
         /// <summary>

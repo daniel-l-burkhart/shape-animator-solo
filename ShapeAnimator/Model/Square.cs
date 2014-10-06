@@ -8,6 +8,18 @@ namespace ShapeAnimator.Model
     /// </summary>
     public class Square : Shape
     {
+        private static int x;
+        private static int y;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Square"/> class.
+        /// </summary>
+        public Square() : base(x, y)
+        {
+            x = RandomizerFactory.MakeRandomizer().Next();
+            y = RandomizerFactory.MakeRandomizer().Next();
+        }
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Square" /> class.
         /// </summary>
@@ -15,6 +27,7 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         public Square(int x, int y) : base(x, y)
         {
+            this.CurrentDirection = TheDirections.Horizontal;
             this.ShapeSpriteInstance = new SquareSprite(this);
         }
 
