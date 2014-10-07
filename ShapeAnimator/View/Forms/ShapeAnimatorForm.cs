@@ -88,6 +88,7 @@ namespace ShapeAnimator.View.Forms
         {
             Graphics g = e.Graphics;
             this.shapeManager.Update(g);
+            this.shapeManager.KeepShapesInBoundary();
         }
 
         /// <summary>

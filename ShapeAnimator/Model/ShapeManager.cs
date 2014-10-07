@@ -90,33 +90,61 @@ namespace ShapeAnimator.Model
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                int x = RandomizerFactory.MakeRandomizer().Next(0, this.CanvasWidth);
-                int y = RandomizerFactory.MakeRandomizer().Next(0, this.CanvasHeight);
-                this.newShape = ShapeFactory.CreateAShape(x, y);
-                this.placeShapesWithinBounds();
+                this.newShape = ShapeFactory.CreateAShape(0, 0);
+
+                this.newShape.X = RandomizerFactory.RandomVariable.Next(0, this.CanvasWidth - this.newShape.Width);
+                this.newShape.Y = RandomizerFactory.RandomVariable.Next(0, this.CanvasHeight - this.newShape.Height);
 
                 this.shapes.Add(this.newShape);
             }
         }
 
-        private void placeShapesWithinBounds()
+        /// <summary>
+        ///     Keeps the shapes in boundary.
+        /// </summary>
+        public void KeepShapesInBoundary()
         {
-            this.newShape.X -= (this.newShape.Width*2);
-            this.newShape.Y -= (this.newShape.Height*2);
+            foreach (Shape randomShape in this.shapes)
+            {
+                this.putShapesInBoundary(randomShape);
+            }
         }
 
-        private void keepShapesInBoundary()
+        private void putShapesInBoundary(Shape thisShape)
         {
-            foreach (Shape thisShape in this.shapes)
+            if (thisShape.GetDirection.Equals(Shape.TheDirections.Horizontal))
             {
-                if (thisShape.X.Equals(0) || thisShape.X >= (this.CanvasWidth - thisShape.Width))
-                {
-                    thisShape.Speed *= -1;
-                }
-                if (thisShape.Y.Equals(0) || thisShape.Y >= (this.CanvasHeight - thisShape.Height))
-                {
-                    thisShape.Speed *= -1;
-                }
+                this.bounceOffHorizontally(thisShape);
+            }
+
+            if (thisShape.GetDirection.Equals(Shape.TheDirections.Vertical))
+            {
+                this.bounceOffVeritically(thisShape);
+            }
+        }
+
+        private void bounceOffVeritically(Shape verticalShape)
+        {
+            if (verticalShape.Y.Equals(0))
+            {
+                verticalShape.Speed *= -1;
+            }
+
+            if (verticalShape.Y >= (this.CanvasHeight - verticalShape.Height))
+            {
+                verticalShape.Speed *= -1;
+            }
+        }
+
+        private void bounceOffHorizontally(Shape horizontalShape)
+        {
+            if (horizontalShape.X.Equals(0))
+            {
+                horizontalShape.Speed *= -1;
+            }
+            if (horizontalShape.X >= (this.CanvasWidth - horizontalShape.Width))
+            {
+                horizontalShape.Speed *= -1;
             }
         }
 
@@ -142,7 +170,6 @@ namespace ShapeAnimator.Model
                 currentShape.Move();
                 currentShape.Paint(g);
             }
-            this.keepShapesInBoundary();
         }
 
         #endregion

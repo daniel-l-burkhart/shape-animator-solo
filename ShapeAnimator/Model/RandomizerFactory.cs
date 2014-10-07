@@ -3,18 +3,17 @@
 namespace ShapeAnimator.Model
 {
     /// <summary>
-    ///     Randomizer factory used for all randomVariable instances throughout project.
+    ///     Randomizer factory used for all RandomVariable instances throughout project.
     /// </summary>
     public static class RandomizerFactory
     {
         /// <summary>
-        ///     Makes the randomizer.
+        ///     The random utility variable
         /// </summary>
-        /// <returns></returns>
-        public static Random MakeRandomizer()
+        public static readonly Random RandomVariable = new Random();
+
+        static RandomizerFactory()
         {
-            var newRandomizer = new Random();
-            return newRandomizer;
         }
     }
 }

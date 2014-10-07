@@ -184,16 +184,15 @@ namespace ShapeAnimator.Model
         ///     Precondition: None
         ///     Postcondition: X == X@prev + amount of movement in X direction; Y == Y@prev + amount of movement in Y direction
         /// </summary>
-        public virtual void Move()
+        public void Move()
         {
-            switch (this.currentDirection)
+            if (this.currentDirection.Equals(TheDirections.Horizontal))
             {
-                case TheDirections.Horizontal:
-                    this.X += this.Speed;
-                    break;
-                case TheDirections.Vertical:
-                    this.Y += this.Speed;
-                    break;
+                this.X += this.Speed;
+            }
+            if (this.currentDirection.Equals(TheDirections.Vertical))
+            {
+                this.Y += this.Speed;
             }
         }
 

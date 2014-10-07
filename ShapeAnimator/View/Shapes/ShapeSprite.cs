@@ -11,10 +11,11 @@ namespace ShapeAnimator.View.Shapes
     {
         #region Properties
 
+        private readonly KnownColor randomColor;
         private readonly int shapeHeight;
         private readonly int shapeWidth;
-        private Shape aShape;
-        private int speed = RandomizerFactory.MakeRandomizer().Next(1, 6);
+        protected Shape AShape;
+        private int speed = RandomizerFactory.RandomVariable.Next(1, 6);
 
         /// <summary>
         ///     Gets the get shape.
@@ -22,9 +23,9 @@ namespace ShapeAnimator.View.Shapes
         /// <value>
         ///     The get shape.
         /// </value>
-        public Shape getShape
+        public Shape GetShape
         {
-            get { return this.aShape; }
+            get { return this.AShape; }
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         protected Shape SetShape
         {
-            set { this.aShape = value; }
+            set { this.AShape = value; }
         }
 
         /// <summary>
@@ -72,6 +73,17 @@ namespace ShapeAnimator.View.Shapes
             set { this.speed = value; }
         }
 
+        /// <summary>
+        ///     Gets the random color.
+        /// </summary>
+        /// <value>
+        ///     The random color of the get.
+        /// </value>
+        public KnownColor GetRandomColor
+        {
+            get { return this.randomColor; }
+        }
+
         #endregion
 
         #region Constructor
@@ -79,11 +91,14 @@ namespace ShapeAnimator.View.Shapes
         /// <summary>
         ///     Initializes a new instance of the <see cref="ShapeSprite" /> class.
         /// </summary>
-        protected ShapeSprite(Shape aShape, int widthFromDerivedShape, int heightFromDerivedShape)
+        protected ShapeSprite(Shape derivedShape, int widthFromDerivedShape, int heightFromDerivedShape)
         {
             this.shapeWidth = widthFromDerivedShape;
             this.shapeHeight = heightFromDerivedShape;
-            this.aShape = aShape;
+            this.AShape = derivedShape;
+
+            Array values = Enum.GetValues(typeof (KnownColor));
+            this.randomColor = (KnownColor) values.GetValue(RandomizerFactory.RandomVariable.Next(values.Length));
         }
 
         #endregion
@@ -94,22 +109,16 @@ namespace ShapeAnimator.View.Shapes
         ///     Paints the specified g.
         /// </summary>
         /// <param name="g">The g.</param>
-        public void Paint(Graphics g)
+        public virtual void Paint(Graphics g)
         {
             if (g == null)
             {
                 throw new ArgumentNullException("g");
             }
 
-            if (this.aShape == null)
+            if (this.AShape == null)
             {
-                return;
             }
-
-            Array values = Enum.GetValues(typeof (KnownColor));
-            var randomColor = (KnownColor) values.GetValue(RandomizerFactory.MakeRandomizer().Next(values.Length));
-            var brush = new SolidBrush(Color.FromKnownColor(randomColor));
-            g.FillEllipse(brush, this.aShape.X, this.aShape.Y, this.aShape.Width, this.aShape.Height);
         }
 
         #endregion

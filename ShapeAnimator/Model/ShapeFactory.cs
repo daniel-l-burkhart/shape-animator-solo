@@ -9,10 +9,12 @@ namespace ShapeAnimator.Model
     {
         #region Instance Variables
 
+        private static MyShapes theShape;
+
         /// <summary>
         ///     the shape enumeration.
         /// </summary>
-        public enum MyShapes
+        private enum MyShapes
         {
             /// <summary>
             ///     The circle
@@ -29,8 +31,6 @@ namespace ShapeAnimator.Model
             /// </summary>
             SpottedCircle
         };
-
-        private static MyShapes theShape;
 
         #endregion
 
@@ -49,7 +49,8 @@ namespace ShapeAnimator.Model
         {
             Shape randomShape = null;
             Array values = Enum.GetValues(typeof (MyShapes));
-            theShape = (MyShapes) values.GetValue(RandomizerFactory.MakeRandomizer().Next(values.Length));
+
+            theShape = (MyShapes) values.GetValue(RandomizerFactory.RandomVariable.Next(0, values.Length));
 
             switch (theShape)
             {

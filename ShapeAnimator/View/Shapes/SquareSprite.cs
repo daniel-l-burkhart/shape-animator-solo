@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -47,6 +48,8 @@ namespace ShapeAnimator.View.Shapes
 
         #endregion
 
+        #region Constructor
+
         /// <summary>
         ///     Prevents a default instance of the <see cref="SquareSprite" /> class from being created.
         /// </summary>
@@ -65,5 +68,23 @@ namespace ShapeAnimator.View.Shapes
 
             this.SetShape = newSquare;
         }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        ///     Paints the specified g.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        public override void Paint(Graphics g)
+        {
+            base.Paint(g);
+            var brush = new SolidBrush(Color.FromKnownColor(this.GetRandomColor));
+
+            g.FillEllipse(brush, this.AShape.X, this.AShape.Y, this.SquareWidth, this.SquareHeight);
+        }
+
+        #endregion
     }
 }

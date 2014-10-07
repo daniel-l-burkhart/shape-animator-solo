@@ -58,8 +58,8 @@ namespace ShapeAnimator.View.Shapes
         {
             var dotBrush = new SolidBrush(Color.White);
 
-            int dotX = (this.getShape.X + ChangeFactor);
-            int dotY = (this.getShape.Y + ChangeFactor);
+            int dotX = (this.GetShape.X + ChangeFactor);
+            int dotY = (this.GetShape.Y + ChangeFactor);
 
             g.FillEllipse(dotBrush, dotX, dotY, 20, 20);
 

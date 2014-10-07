@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -13,12 +14,12 @@ namespace ShapeAnimator.View.Shapes
         /// <summary>
         ///     The circle height
         /// </summary>
-        public const int CircleCircleHeightProperty = 100;
+        public const int CircleCircleHeightPropertyConst = 100;
 
         /// <summary>
         ///     The circle width
         /// </summary>
-        public const int CircleCircleWidthProperty = 100;
+        public const int CircleCircleWidthPropertyConst = 100;
 
         /// <summary>
         ///     Gets the CircleCircleWidthProperty.
@@ -28,7 +29,7 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         public int CircleWidthProperty
         {
-            get { return CircleCircleWidthProperty; }
+            get { return CircleCircleWidthPropertyConst; }
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         public int CircleHeightProperty
         {
-            get { return CircleCircleHeightProperty; }
+            get { return CircleCircleHeightPropertyConst; }
         }
 
         #endregion
@@ -52,7 +53,8 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         /// <param name="newCircle">The new circle.</param>
         /// <exception cref="System.ArgumentNullException">shape</exception>
-        public CircleSprite(Shape newCircle) : base(newCircle, CircleCircleWidthProperty, CircleCircleHeightProperty)
+        public CircleSprite(Shape newCircle)
+            : base(newCircle, CircleCircleWidthPropertyConst, CircleCircleHeightPropertyConst)
         {
             if (newCircle == null)
             {
@@ -60,6 +62,22 @@ namespace ShapeAnimator.View.Shapes
             }
 
             this.SetShape = newCircle;
+        }
+
+        #endregion
+
+        #region Method
+
+        /// <summary>
+        ///     Paints the specified g.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        public override void Paint(Graphics g)
+        {
+            base.Paint(g);
+            var brush = new SolidBrush(Color.FromKnownColor(this.GetRandomColor));
+
+            g.FillEllipse(brush, this.AShape.X, this.AShape.Y, this.CircleWidthProperty, this.CircleHeightProperty);
         }
 
         #endregion
