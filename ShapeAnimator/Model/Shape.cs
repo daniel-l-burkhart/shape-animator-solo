@@ -27,23 +27,45 @@ namespace ShapeAnimator.Model
             Vertical
         }
 
-        protected TheDirections CurrentDirection;
-
         /// <summary>
         ///     The new shape sprite
         /// </summary>
         protected ShapeSprite ShapeSpriteInstance;
+
+        private TheDirections currentDirection;
 
         /// <summary>
         ///     The location
         /// </summary>
         private Point location;
 
-        private ShapeManager shapeManagerVar;
-
         #endregion
 
         #region Properties
+
+        private ShapeManager shapeManagerVar;
+
+        /// <summary>
+        ///     Gets the get direction.
+        /// </summary>
+        /// <value>
+        ///     The get direction.
+        /// </value>
+        public TheDirections GetDirection
+        {
+            get { return this.currentDirection; }
+        }
+
+        /// <summary>
+        ///     Sets the set direction.
+        /// </summary>
+        /// <value>
+        ///     The set direction.
+        /// </value>
+        protected TheDirections SetDirection
+        {
+            set { this.currentDirection = value; }
+        }
 
         /// <summary>
         ///     Gets or sets the x location of the shape.
@@ -70,7 +92,7 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        ///     Gets the CircleWidthProperty.
+        ///     Gets the width.
         /// </summary>
         /// <value>
         ///     The CircleWidthProperty.
@@ -100,6 +122,18 @@ namespace ShapeAnimator.Model
         public int Speed
         {
             get { return this.ShapeSpriteInstance.Speed; }
+            set { this.ShapeSpriteInstance.Speed = value; }
+        }
+
+        /// <summary>
+        ///     Gets the get manager.
+        /// </summary>
+        /// <value>
+        ///     The get manager.
+        /// </value>
+        protected ShapeManager GetManager
+        {
+            get { return this.shapeManagerVar; }
         }
 
         #endregion
@@ -150,9 +184,9 @@ namespace ShapeAnimator.Model
         ///     Precondition: None
         ///     Postcondition: X == X@prev + amount of movement in X direction; Y == Y@prev + amount of movement in Y direction
         /// </summary>
-        public void Move()
+        public virtual void Move()
         {
-            switch (this.CurrentDirection)
+            switch (this.currentDirection)
             {
                 case TheDirections.Horizontal:
                     this.X += this.Speed;
@@ -176,21 +210,6 @@ namespace ShapeAnimator.Model
                 throw new ArgumentNullException("g");
             }
             this.ShapeSpriteInstance.Paint(g);
-        }
-
-        /// <summary>
-        /// Keeps the shapes in the boundary.
-        /// </summary>
-        public void KeepInBoundary()
-        {
-            if (this.X >= (this.shapeManagerVar.CanvasWidth - this.Width))
-            {
-                this.X = (this.X*-1);
-            }
-            if (this.Y >= (this.shapeManagerVar.CanvasHeight - this.Height))
-            {
-                this.Y = (this.Y*-1);
-            }
         }
 
         #endregion

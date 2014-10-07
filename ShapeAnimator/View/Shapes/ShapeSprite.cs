@@ -9,18 +9,33 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public abstract class ShapeSprite
     {
-        protected Shape AShape;
-        protected int ShapeHeight;
-        protected int ShapeWidth;
+        #region Properties
+
+        private readonly int shapeHeight;
+        private readonly int shapeWidth;
+        private Shape aShape;
+        private int speed = RandomizerFactory.MakeRandomizer().Next(1, 6);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ShapeSprite" /> class.
+        ///     Gets the get shape.
         /// </summary>
-        protected ShapeSprite(Shape aShape, int shapeWidth, int shapeHeight)
+        /// <value>
+        ///     The get shape.
+        /// </value>
+        public Shape getShape
         {
-            this.ShapeWidth = shapeWidth;
-            this.ShapeHeight = shapeHeight;
-            this.AShape = aShape;
+            get { return this.aShape; }
+        }
+
+        /// <summary>
+        ///     Allows derived classes to set the shape.
+        /// </summary>
+        /// <value>
+        ///     The set shape.
+        /// </value>
+        protected Shape SetShape
+        {
+            set { this.aShape = value; }
         }
 
         /// <summary>
@@ -31,7 +46,7 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         public int Width
         {
-            get { return this.ShapeWidth; }
+            get { return this.shapeWidth; }
         }
 
         /// <summary>
@@ -42,7 +57,7 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         public int Height
         {
-            get { return this.ShapeHeight; }
+            get { return this.shapeHeight; }
         }
 
         /// <summary>
@@ -53,8 +68,27 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         public int Speed
         {
-            get { return RandomizerFactory.MakeRandomizer().Next(1, 6); }
+            get { return this.speed; }
+            set { this.speed = value; }
         }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ShapeSprite" /> class.
+        /// </summary>
+        protected ShapeSprite(Shape aShape, int widthFromDerivedShape, int heightFromDerivedShape)
+        {
+            this.shapeWidth = widthFromDerivedShape;
+            this.shapeHeight = heightFromDerivedShape;
+            this.aShape = aShape;
+        }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         ///     Paints the specified g.
@@ -67,7 +101,7 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("g");
             }
 
-            if (this.AShape == null)
+            if (this.aShape == null)
             {
                 return;
             }
@@ -75,7 +109,9 @@ namespace ShapeAnimator.View.Shapes
             Array values = Enum.GetValues(typeof (KnownColor));
             var randomColor = (KnownColor) values.GetValue(RandomizerFactory.MakeRandomizer().Next(values.Length));
             var brush = new SolidBrush(Color.FromKnownColor(randomColor));
-            g.FillEllipse(brush, this.AShape.X, this.AShape.Y, this.AShape.Width, this.AShape.Height);
+            g.FillEllipse(brush, this.aShape.X, this.aShape.Y, this.aShape.Width, this.aShape.Height);
         }
+
+        #endregion
     }
 }

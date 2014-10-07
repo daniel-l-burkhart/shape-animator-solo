@@ -7,6 +7,8 @@ namespace ShapeAnimator.Model
     /// </summary>
     public static class ShapeFactory
     {
+        #region Instance Variables
+
         /// <summary>
         ///     the shape enumeration.
         /// </summary>
@@ -30,16 +32,20 @@ namespace ShapeAnimator.Model
 
         private static MyShapes theShape;
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         ///     Creates a random shape and is the purpose of the ShapeFactory.
         /// </summary>
         /// <returns></returns>
-        public static Shape CreateAShape()
+        public static Shape CreateAShape(int x, int y)
         {
-            return determineRandomShape();
+            return determineRandomShape(x, y);
         }
 
-        private static Shape determineRandomShape()
+        private static Shape determineRandomShape(int x, int y)
         {
             Shape randomShape = null;
             Array values = Enum.GetValues(typeof (MyShapes));
@@ -48,16 +54,18 @@ namespace ShapeAnimator.Model
             switch (theShape)
             {
                 case MyShapes.Circle:
-                    randomShape = new Circle();
+                    randomShape = new Circle(x, y);
                     break;
                 case MyShapes.Square:
-                    randomShape = new Square();
+                    randomShape = new Square(x, y);
                     break;
                 case MyShapes.SpottedCircle:
-                    randomShape = new SpottedCircle();
+                    randomShape = new SpottedCircle(x, y);
                     break;
             }
             return randomShape;
         }
+
+        #endregion
     }
 }

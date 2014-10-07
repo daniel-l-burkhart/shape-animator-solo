@@ -43,7 +43,9 @@ namespace ShapeAnimator.View.Shapes
         }
 
         #endregion
+
         #region Constructor
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="CircleSprite" /> class.
         ///     Precondition: shape != null
@@ -57,8 +59,9 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("newCircle");
             }
 
-            this.AShape = newCircle;
+            this.SetShape = newCircle;
         }
+
         #endregion
     }
 }

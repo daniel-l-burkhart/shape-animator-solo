@@ -63,7 +63,7 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("newSquare");
             }
 
-            this.AShape = newSquare;
+            this.SetShape = newSquare;
         }
     }
 }

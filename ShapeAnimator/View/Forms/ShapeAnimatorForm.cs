@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using ShapeAnimator.Model;
+using ShapeAnimator.Properties;
 
 namespace ShapeAnimator.View.Forms
 {
@@ -38,12 +39,12 @@ namespace ShapeAnimator.View.Forms
                     number = Convert.ToInt32(this.numberShapesTextBox.Text);
                     if (number < 0)
                     {
-                        MessageBox.Show("Number of Shapes cannot be negative");
+                        MessageBox.Show(Resources.ShapeAnimatorForm_NumberShapes_Number_of_Shapes_cannot_be_negative);
                     }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Type must be of integer form");
+                    MessageBox.Show(Resources.ShapeAnimatorForm_NumberShapes_Type_must_be_of_integer_form);
                 }
                 return number;
             }

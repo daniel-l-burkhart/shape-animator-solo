@@ -32,7 +32,7 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("newSpottedCircle");
             }
 
-            this.AShape = newSpottedCircle;
+            this.SetShape = newSpottedCircle;
         }
 
         #endregion
@@ -58,8 +58,8 @@ namespace ShapeAnimator.View.Shapes
         {
             var dotBrush = new SolidBrush(Color.White);
 
-            int dotX = (this.AShape.X + ChangeFactor);
-            int dotY = (this.AShape.Y + ChangeFactor);
+            int dotX = (this.getShape.X + ChangeFactor);
+            int dotY = (this.getShape.Y + ChangeFactor);
 
             g.FillEllipse(dotBrush, dotX, dotY, 20, 20);
 

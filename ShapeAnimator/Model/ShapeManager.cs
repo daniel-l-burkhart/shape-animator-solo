@@ -20,13 +20,14 @@ namespace ShapeAnimator.Model
         private Shape newShape;
 
         #endregion
+
         #region Properties
 
         /// <summary>
-        /// Gets the width of the canvas.
+        ///     Gets the width of the canvas.
         /// </summary>
         /// <value>
-        /// The width of the canvas.
+        ///     The width of the canvas.
         /// </value>
         public int CanvasWidth
         {
@@ -34,16 +35,18 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets the height of the canvas.
+        ///     Gets the height of the canvas.
         /// </summary>
         /// <value>
-        /// The height of the canvas.
+        ///     The height of the canvas.
         /// </value>
         public int CanvasHeight
         {
             get { return this.canvas.Height; }
         }
+
         #endregion
+
         #region Constructors
 
         private ShapeManager()
@@ -68,6 +71,8 @@ namespace ShapeAnimator.Model
 
         #endregion
 
+        #region Methods
+
         /// <summary>
         ///     Places the shape on the canvas.
         ///     Precondition: numberOfShapes != less than 0
@@ -85,7 +90,9 @@ namespace ShapeAnimator.Model
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                this.newShape = ShapeFactory.CreateAShape();
+                int x = RandomizerFactory.MakeRandomizer().Next(0, this.CanvasWidth);
+                int y = RandomizerFactory.MakeRandomizer().Next(0, this.CanvasHeight);
+                this.newShape = ShapeFactory.CreateAShape(x, y);
                 this.placeShapesWithinBounds();
 
                 this.shapes.Add(this.newShape);
@@ -94,11 +101,24 @@ namespace ShapeAnimator.Model
 
         private void placeShapesWithinBounds()
         {
-            this.newShape.X -= this.newShape.Width;
-            this.newShape.Y -= this.newShape.Height;
+            this.newShape.X -= (this.newShape.Width*2);
+            this.newShape.Y -= (this.newShape.Height*2);
         }
 
-        
+        private void keepShapesInBoundary()
+        {
+            foreach (Shape thisShape in this.shapes)
+            {
+                if (thisShape.X.Equals(0) || thisShape.X >= (this.CanvasWidth - thisShape.Width))
+                {
+                    thisShape.Speed *= -1;
+                }
+                if (thisShape.Y.Equals(0) || thisShape.Y >= (this.CanvasHeight - thisShape.Height))
+                {
+                    thisShape.Speed *= -1;
+                }
+            }
+        }
 
         /// <summary>
         ///     Moves the shape around and the calls the Shape::Paint method to draw the shape.
@@ -121,8 +141,10 @@ namespace ShapeAnimator.Model
                 }
                 currentShape.Move();
                 currentShape.Paint(g);
-                currentShape.KeepInBoundary();
             }
+            this.keepShapesInBoundary();
         }
+
+        #endregion
     }
 }

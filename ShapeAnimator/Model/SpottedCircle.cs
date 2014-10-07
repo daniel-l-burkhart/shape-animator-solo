@@ -8,17 +8,7 @@ namespace ShapeAnimator.Model
     /// </summary>
     public class SpottedCircle : Shape
     {
-        private static int x;
-        private static int y;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SpottedCircle"/> class.
-        /// </summary>
-        public SpottedCircle() : base(x, y)
-        {
-            x = RandomizerFactory.MakeRandomizer().Next();
-            y = RandomizerFactory.MakeRandomizer().Next();
-        }
+        #region Constructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpottedCircle" /> class.
@@ -27,7 +17,7 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         public SpottedCircle(int x, int y) : base(x, y)
         {
-            this.CurrentDirection = TheDirections.Horizontal;
+            this.SetDirection = TheDirections.Vertical;
             this.ShapeSpriteInstance = new SpottedCircleSprite(this);
         }
 
@@ -39,5 +29,7 @@ namespace ShapeAnimator.Model
         {
             this.ShapeSpriteInstance = new SpottedCircleSprite(this);
         }
+
+        #endregion
     }
 }

@@ -8,17 +8,7 @@ namespace ShapeAnimator.Model
     /// </summary>
     public class Circle : Shape
     {
-        private static int x;
-        private static int y;
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Circle" /> class.
-        /// </summary>
-        public Circle() : base(x, y)
-        {
-            x = this.X;
-            y = this.Y;
-        }
+        #region Constructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Circle" /> class.
@@ -27,7 +17,7 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         public Circle(int x, int y) : base(x, y)
         {
-            this.CurrentDirection = TheDirections.Vertical;
+            this.SetDirection = TheDirections.Vertical;
             this.ShapeSpriteInstance = new CircleSprite(this);
         }
 
@@ -39,5 +29,7 @@ namespace ShapeAnimator.Model
         {
             this.ShapeSpriteInstance = new CircleSprite(this);
         }
+
+        #endregion
     }
 }
