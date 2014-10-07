@@ -20,7 +20,30 @@ namespace ShapeAnimator.Model
         private Shape newShape;
 
         #endregion
+        #region Properties
 
+        /// <summary>
+        /// Gets the width of the canvas.
+        /// </summary>
+        /// <value>
+        /// The width of the canvas.
+        /// </value>
+        public int CanvasWidth
+        {
+            get { return this.canvas.Width; }
+        }
+
+        /// <summary>
+        /// Gets the height of the canvas.
+        /// </summary>
+        /// <value>
+        /// The height of the canvas.
+        /// </value>
+        public int CanvasHeight
+        {
+            get { return this.canvas.Height; }
+        }
+        #endregion
         #region Constructors
 
         private ShapeManager()
@@ -71,9 +94,11 @@ namespace ShapeAnimator.Model
 
         private void placeShapesWithinBounds()
         {
-            this.newShape.X = - this.newShape.Width;
-            this.newShape.Y = - this.newShape.Height;
+            this.newShape.X -= this.newShape.Width;
+            this.newShape.Y -= this.newShape.Height;
         }
+
+        
 
         /// <summary>
         ///     Moves the shape around and the calls the Shape::Paint method to draw the shape.
@@ -96,6 +121,7 @@ namespace ShapeAnimator.Model
                 }
                 currentShape.Move();
                 currentShape.Paint(g);
+                currentShape.KeepInBoundary();
             }
         }
     }

@@ -43,10 +43,7 @@ namespace ShapeAnimator.View.Shapes
         }
 
         #endregion
-
-        /// <summary>
-        ///     Prevents a default instance of the <see cref="CircleSprite" /> class from being created.
-        /// </summary>
+        #region Constructor
         /// <summary>
         ///     Initializes a new instance of the <see cref="CircleSprite" /> class.
         ///     Precondition: shape != null
@@ -62,5 +59,6 @@ namespace ShapeAnimator.View.Shapes
 
             this.AShape = newCircle;
         }
+        #endregion
     }
 }

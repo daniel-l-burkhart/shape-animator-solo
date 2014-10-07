@@ -39,6 +39,8 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Point location;
 
+        private ShapeManager shapeManagerVar;
+
         #endregion
 
         #region Properties
@@ -174,6 +176,21 @@ namespace ShapeAnimator.Model
                 throw new ArgumentNullException("g");
             }
             this.ShapeSpriteInstance.Paint(g);
+        }
+
+        /// <summary>
+        /// Keeps the shapes in the boundary.
+        /// </summary>
+        public void KeepInBoundary()
+        {
+            if (this.X >= (this.shapeManagerVar.CanvasWidth - this.Width))
+            {
+                this.X = (this.X*-1);
+            }
+            if (this.Y >= (this.shapeManagerVar.CanvasHeight - this.Height))
+            {
+                this.Y = (this.Y*-1);
+            }
         }
 
         #endregion
