@@ -27,6 +27,8 @@ namespace ShapeAnimator.Model
             Vertical
         }
 
+        private readonly int initialFactor;
+
         /// <summary>
         ///     The new shape sprite
         /// </summary>
@@ -34,17 +36,11 @@ namespace ShapeAnimator.Model
 
         private TheDirections currentDirection;
 
-        /// <summary>
-        ///     The location
-        /// </summary>
         private Point location;
 
-        private int initialFactor;
         #endregion
 
         #region Properties
-
-        private ShapeManager shapeManagerVar;
 
         /// <summary>
         ///     Gets the get direction.
@@ -126,17 +122,6 @@ namespace ShapeAnimator.Model
             set { this.ShapeSpriteInstance.Speed = value; }
         }
 
-        /// <summary>
-        ///     Gets the get manager.
-        /// </summary>
-        /// <value>
-        ///     The get manager.
-        /// </value>
-        protected ShapeManager GetManager
-        {
-            get { return this.shapeManagerVar; }
-        }
-
         #endregion
 
         #region Constructors
@@ -146,7 +131,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Shape()
         {
-            this.initialFactor = this.determineInitialMovement();
+            this.initialFactor = determineInitialMovement();
         }
 
         /// <summary>
@@ -202,7 +187,7 @@ namespace ShapeAnimator.Model
         {
             int initialMovement = 0;
             int randomNumber = RandomizerFactory.RandomVariable.Next(0, 2);
-            
+
             switch (randomNumber)
             {
                 case 0:
@@ -221,7 +206,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
         /// <exception cref="System.ArgumentNullException">g</exception>
-        public virtual void Paint(Graphics g)
+        public void Paint(Graphics g)
         {
             if (g == null)
             {

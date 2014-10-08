@@ -31,17 +31,6 @@ namespace ShapeAnimator.Model
             this.ShapeSpriteInstance = new SpottedCircleSprite(this);
         }
 
-        /// <summary>
-        ///     Draws a shape
-        ///     Precondition: g != NULL
-        /// </summary>
-        /// <param name="g">The graphics object to draw the shape one</param>
-        /// <exception cref="System.ArgumentNullException">g</exception>
-        public override void Paint(Graphics g)
-        {
-            this.ShapeSpriteInstance.Paint(g);
-        }
-
         #endregion
     }
 }

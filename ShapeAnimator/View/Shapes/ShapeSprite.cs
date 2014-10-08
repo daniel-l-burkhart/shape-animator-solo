@@ -9,13 +9,21 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public abstract class ShapeSprite
     {
-        #region Properties
+        #region Instance Variables
 
         private readonly KnownColor randomColor;
+
         private readonly int shapeHeight;
+
         private readonly int shapeWidth;
-        protected Shape MyShapeSpriteShape;
+
         private int speed = RandomizerFactory.RandomVariable.Next(1, 6);
+
+        protected Shape MyShapeSpriteShape;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         ///     Gets the get shape.

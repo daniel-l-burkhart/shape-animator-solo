@@ -1,0 +1,10 @@
+﻿No apparent bugs in functionality.
+
+Tested for combinations of non-integers including floats and characters.
+Shapes are cleared after every click of the Animate button.
+Colors are random.
+Initial directions are random.
+Shapes appear to stay within boundaries.
+
+
+No code issues found.

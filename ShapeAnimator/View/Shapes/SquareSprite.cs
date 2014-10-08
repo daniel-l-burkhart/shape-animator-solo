@@ -8,10 +8,6 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public class SquareSprite : ShapeSprite
     {
-        #region Instance variables
-
-        #endregion
-
         #region Properties
 
         /// <summary>
