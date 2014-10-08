@@ -27,7 +27,19 @@ namespace ShapeAnimator.Model
         /// <param name="location">Location to create shape</param>
         public SpottedCircle(Point location) : base(location)
         {
+            this.SetDirection = TheDirections.Vertical;
             this.ShapeSpriteInstance = new SpottedCircleSprite(this);
+        }
+
+        /// <summary>
+        ///     Draws a shape
+        ///     Precondition: g != NULL
+        /// </summary>
+        /// <param name="g">The graphics object to draw the shape one</param>
+        /// <exception cref="System.ArgumentNullException">g</exception>
+        public override void Paint(Graphics g)
+        {
+            this.ShapeSpriteInstance.Paint(g);
         }
 
         #endregion

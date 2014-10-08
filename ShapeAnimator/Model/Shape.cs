@@ -186,11 +186,11 @@ namespace ShapeAnimator.Model
         /// </summary>
         public void Move()
         {
-            if (this.currentDirection.Equals(TheDirections.Horizontal))
+            if (this.GetDirection.Equals(TheDirections.Horizontal))
             {
                 this.X += this.Speed;
             }
-            if (this.currentDirection.Equals(TheDirections.Vertical))
+            if (this.GetDirection.Equals(TheDirections.Vertical))
             {
                 this.Y += this.Speed;
             }
@@ -202,7 +202,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
         /// <exception cref="System.ArgumentNullException">g</exception>
-        public void Paint(Graphics g)
+        public virtual void Paint(Graphics g)
         {
             if (g == null)
             {

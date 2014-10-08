@@ -14,7 +14,7 @@ namespace ShapeAnimator.View.Shapes
         private readonly KnownColor randomColor;
         private readonly int shapeHeight;
         private readonly int shapeWidth;
-        protected Shape AShape;
+        protected Shape MyShapeSpriteShape;
         private int speed = RandomizerFactory.RandomVariable.Next(1, 6);
 
         /// <summary>
@@ -23,9 +23,9 @@ namespace ShapeAnimator.View.Shapes
         /// <value>
         ///     The get shape.
         /// </value>
-        public Shape GetShape
+        public Shape GetShapeSpriteShape
         {
-            get { return this.AShape; }
+            get { return this.MyShapeSpriteShape; }
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace ShapeAnimator.View.Shapes
         /// </value>
         protected Shape SetShape
         {
-            set { this.AShape = value; }
+            set { this.MyShapeSpriteShape = value; }
         }
 
         /// <summary>
@@ -91,11 +91,11 @@ namespace ShapeAnimator.View.Shapes
         /// <summary>
         ///     Initializes a new instance of the <see cref="ShapeSprite" /> class.
         /// </summary>
-        protected ShapeSprite(Shape derivedShape, int widthFromDerivedShape, int heightFromDerivedShape)
+        protected ShapeSprite(Shape derivedShapeSpriteShape, int widthFromDerivedShape, int heightFromDerivedShape)
         {
             this.shapeWidth = widthFromDerivedShape;
             this.shapeHeight = heightFromDerivedShape;
-            this.AShape = derivedShape;
+            this.MyShapeSpriteShape = derivedShapeSpriteShape;
 
             Array values = Enum.GetValues(typeof (KnownColor));
             this.randomColor = (KnownColor) values.GetValue(RandomizerFactory.RandomVariable.Next(values.Length));
@@ -114,10 +114,6 @@ namespace ShapeAnimator.View.Shapes
             if (g == null)
             {
                 throw new ArgumentNullException("g");
-            }
-
-            if (this.AShape == null)
-            {
             }
         }
 

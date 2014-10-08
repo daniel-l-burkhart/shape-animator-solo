@@ -99,52 +99,39 @@ namespace ShapeAnimator.Model
             }
         }
 
-        /// <summary>
-        ///     Keeps the shapes in boundary.
-        /// </summary>
-        public void KeepShapesInBoundary()
+        private void keepShapesInBounds(Shape randomShape)
         {
-            foreach (Shape randomShape in this.shapes)
+            if (randomShape.GetDirection == Shape.TheDirections.Horizontal)
             {
-                this.putShapesInBoundary(randomShape);
+                this.keepInBoundsHorizontally(randomShape);
+            }
+            if (randomShape.GetDirection == Shape.TheDirections.Vertical)
+            {
+                this.keepInBoundsVertically(randomShape);
             }
         }
 
-        private void putShapesInBoundary(Shape thisShape)
+        private void keepInBoundsHorizontally(Shape horizontalShape)
         {
-            if (thisShape.GetDirection.Equals(Shape.TheDirections.Horizontal))
-            {
-                this.bounceOffHorizontally(thisShape);
-            }
-
-            if (thisShape.GetDirection.Equals(Shape.TheDirections.Vertical))
-            {
-                this.bounceOffVeritically(thisShape);
-            }
-        }
-
-        private void bounceOffVeritically(Shape verticalShape)
-        {
-            if (verticalShape.Y.Equals(0))
-            {
-                verticalShape.Speed *= -1;
-            }
-
-            if (verticalShape.Y >= (this.CanvasHeight - verticalShape.Height))
-            {
-                verticalShape.Speed *= -1;
-            }
-        }
-
-        private void bounceOffHorizontally(Shape horizontalShape)
-        {
-            if (horizontalShape.X.Equals(0))
+            if (horizontalShape.X <= 0)
             {
                 horizontalShape.Speed *= -1;
             }
             if (horizontalShape.X >= (this.CanvasWidth - horizontalShape.Width))
             {
                 horizontalShape.Speed *= -1;
+            }
+        }
+
+        private void keepInBoundsVertically(Shape verticalShape)
+        {
+            if (verticalShape.Y <= 0)
+            {
+                verticalShape.Speed *= -1;
+            }
+            if (verticalShape.Y >= (this.CanvasHeight - verticalShape.Height))
+            {
+                verticalShape.Speed *= -1;
             }
         }
 
@@ -169,6 +156,7 @@ namespace ShapeAnimator.Model
                 }
                 currentShape.Move();
                 currentShape.Paint(g);
+                this.keepShapesInBounds(currentShape);
             }
         }
 

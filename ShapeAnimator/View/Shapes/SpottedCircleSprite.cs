@@ -16,6 +16,8 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         public const int ChangeFactor = 20;
 
+        private SolidBrush dotBrush;
+
         #endregion
 
         #region Constructor
@@ -44,7 +46,7 @@ namespace ShapeAnimator.View.Shapes
         ///     Preconditon: g != null
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
-        public new void Paint(Graphics g)
+        public override void Paint(Graphics g)
         {
             base.Paint(g);
             this.fillWithDots(g);
@@ -56,20 +58,20 @@ namespace ShapeAnimator.View.Shapes
         /// <param name="g">The g.</param>
         private void fillWithDots(Graphics g)
         {
-            var dotBrush = new SolidBrush(Color.White);
+            this.dotBrush = new SolidBrush(Color.White);
 
-            int dotX = (this.GetShape.X + ChangeFactor);
-            int dotY = (this.GetShape.Y + ChangeFactor);
+            int dotX = (this.GetShapeSpriteShape.X + ChangeFactor);
+            int dotY = (this.GetShapeSpriteShape.Y + ChangeFactor);
 
-            g.FillEllipse(dotBrush, dotX, dotY, 20, 20);
+            g.FillEllipse(this.dotBrush, dotX, dotY, 20, 20);
 
             dotX += ChangeFactor;
             dotY += ChangeFactor;
-            g.FillEllipse(dotBrush, dotX, dotY, 20, 20);
+            g.FillEllipse(this.dotBrush, dotX, dotY, 20, 20);
 
             dotX -= ChangeFactor;
             dotY += ChangeFactor;
-            g.FillEllipse(dotBrush, dotX, dotY, 20, 20);
+            g.FillEllipse(this.dotBrush, dotX, dotY, 20, 20);
         }
 
         #endregion

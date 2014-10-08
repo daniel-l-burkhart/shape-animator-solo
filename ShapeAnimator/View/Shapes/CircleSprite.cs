@@ -77,7 +77,8 @@ namespace ShapeAnimator.View.Shapes
             base.Paint(g);
             var brush = new SolidBrush(Color.FromKnownColor(this.GetRandomColor));
 
-            g.FillEllipse(brush, this.AShape.X, this.AShape.Y, this.CircleWidthProperty, this.CircleHeightProperty);
+            g.FillEllipse(brush, this.MyShapeSpriteShape.X, this.MyShapeSpriteShape.Y, this.CircleWidthProperty,
+                this.CircleHeightProperty);
         }
 
         #endregion
