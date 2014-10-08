@@ -39,6 +39,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Point location;
 
+        private int initialFactor;
         #endregion
 
         #region Properties
@@ -145,6 +146,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         private Shape()
         {
+            this.initialFactor = this.determineInitialMovement();
         }
 
         /// <summary>
@@ -188,12 +190,29 @@ namespace ShapeAnimator.Model
         {
             if (this.GetDirection.Equals(TheDirections.Horizontal))
             {
-                this.X += this.Speed;
+                this.X += (this.Speed*this.initialFactor);
             }
             if (this.GetDirection.Equals(TheDirections.Vertical))
             {
-                this.Y += this.Speed;
+                this.Y += (this.Speed*this.initialFactor);
             }
+        }
+
+        private int determineInitialMovement()
+        {
+            int initialMovement = 0;
+            int randomNumber = RandomizerFactory.RandomVariable.Next(0, 2);
+            
+            switch (randomNumber)
+            {
+                case 0:
+                    initialMovement = 1;
+                    break;
+                case 1:
+                    initialMovement = -1;
+                    break;
+            }
+            return initialMovement;
         }
 
         /// <summary>
